@@ -1,0 +1,2595 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Python-Google Robot Framework-Selenium:
+========================================
+*** Settings ***
+Library  SeleniumLibrary
+
+
+*** Variables ***
+
+
+*** Test Cases ***
+LoginTest
+
+    open browser    https://demo.nopcommerce.com/   chrome
+    maximize browser window
+    click link  xpath://a[@class='ico-login']
+    input text  id:Email    aarthimuthaiya99@gmail.com
+    input text  id:Password     aarthi1803
+    click element   xpath://input[@value='Log in']
+    close browser
+
+
+*** Keywords ***
+
+In terminal type this and see output --> robot TestCases\TC1.robot
+-----------------
+*** Settings ***
+Library  SeleniumLibrary
+
+
+
+*** Variables ***
+${browser}  chrome
+${url}      https://demo.nopcommerce.com/
+
+*** Test Cases ***
+LoginTest
+
+    open browser    ${url}      ${browser}
+    maximize browser window
+    click link  xpath://a[@class='ico-login']
+    input text  id:Email    aarthimuthaiya99@gmail.com
+    input text  id:Password     aarthi1803
+    click element   xpath://input[@value='Log in']
+    close browser
+
+
+*** Keywords ***
+In terminal type this and see output --> robot TestCases\TC1.robot
+----------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Variables ***
+${browser}  chrome
+${url}      https://demo.nopcommerce.com/
+
+*** Test Cases ***
+TestingInputBox
+    open browser    ${url}      ${browser}
+    maximize browser window
+    title should be     nopCommerce demo store
+    click link  xpath://a[@class='ico-login']
+    ${"email_txt"}  set variable    id:Email
+    element should be visible   ${"email_txt"}
+    element should be enabled   ${"email_txt"}
+    input text  ${"email_txt"}      aarthimuthaiya99@gmail.com
+    sleep   5
+    clear element text      ${"email_txt"}
+    sleep   3
+    close browser
+
+*** Keywords ***
+
+In terminal type this and see output --> robot TestCases\inputbox.robot
+---------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Variables ***
+${browser}  chrome
+${url}      https://demo.nopcommerce.com/
+
+*** Test Cases ***
+TestingInputBox
+    open browser    ${url}      ${browser}
+    maximize browser window
+    title should be     nopCommerce demo store
+    click link  xpath://a[@class='ico-login']
+    ${"email_txt"}  set variable    id:Email
+    #element should be visible   ${"email_txt"}
+    #element should be enabled   ${"email_txt"}
+    element should not be visible   ${"email_txt"}
+    input text  ${"email_txt"}      aarthimuthaiya99@gmail.com
+    sleep   5
+    clear element text      ${"email_txt"}
+    sleep   3
+    close browser
+
+*** Keywords ***
+
+In terminal type this and see output --> robot TestCases\inputbox.robot
+-----------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Variables ***
+${browser}  chrome
+${url}      http://www.practiceselenium.com/practice-form.html
+
+*** Test Cases ***
+Testing Radio Buttons and Check Boxes
+    open browser    ${url}      ${browser}
+    maximize browser window
+    select radio button     sex     Female
+    select radio button     exp     5
+
+In terminal type this and see output --> robot TestCases\radiobuttons.robot
+---------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Variables ***
+${browser}  chrome
+${url}      http://www.practiceselenium.com/practice-form.html
+
+*** Test Cases ***
+Testing Radio Buttons and Check Boxes
+    open browser    ${url}      ${browser}
+    maximize browser window
+    set selenium speed      2seconds
+    #selecting radio buttons
+    select radio button     sex     Female
+    select radio button     exp     5
+
+    #selecting checkboxes
+    select checkbox     BlackTea
+    select checkbox     RedTea
+
+    unselect checkbox   BlackTea
+
+In terminal type this and see output --> robot TestCases\radiobuttons.robot
+-------------
+
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Variables ***
+${browser}  chrome
+${url}      http://www.practiceselenium.com/practice-form.html
+
+*** Test Cases ***
+Handling DrpDowns and Lists
+    open browser    ${url}  ${browser}
+    maximize browser window
+    select from list by label   continents  Australia
+    sleep   3
+    select from list by index   continents      6
+
+In terminal type this and see output --> robot TestCases\dropdown.robot
+--------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Variables ***
+${browser}  chrome
+${url}      http://www.practiceselenium.com/practice-form.html
+
+*** Test Cases ***
+Handling DrpDowns and Lists
+    open browser    ${url}  ${browser}
+    maximize browser window
+    #dropdown box
+    select from list by label   continents  Australia
+    sleep   3
+    select from list by index   continents      6
+
+    #select from list by value  continents  value
+
+    #list box
+    select from list by label   selenium_commands   Switch Commands
+    select from list by label   selenium_commands   WebElement Commands
+    sleep   5
+    unselect from list by label   selenium_commands   Switch Commands
+
+In terminal type this and see output --> robot TestCases\dropdown.robot
+--------------
+http://demowebshop.tricentis.com/register
+
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+RegTest
+    open browser    http://demowebshop.tricentis.com/register   chrome
+    maximize browser window
+    select radio button    Gender  M
+    input text  name:FirstName  David
+    input text  name:LastName   John
+    input text  name:Email      anch@gmail.com
+    input text  name:Password   davidjohn
+    input text  name:ConfirmPassword    davidjohn
+
+In terminal type this and see output --> robot TestCases\SpeedTest.robot
+
+---------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+RegTest
+    open browser    http://demowebshop.tricentis.com/register   chrome
+    maximize browser window
+    sleep 3 
+    select radio button    Gender  M
+    input text  name:FirstName  David
+    input text  name:LastName   John
+    input text  name:Email      anch@gmail.com
+    input text  name:Password   davidjohn
+    input text  name:ConfirmPassword    davidjohn
+
+In terminal type this and see output --> robot TestCases\SpeedTest.robot
+
+
+------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+RegTest
+    open browser    http://demowebshop.tricentis.com/register   chrome
+    maximize browser window
+    set selenium speed  3 seconds
+    select radio button    Gender  M
+    input text  name:FirstName  David
+    input text  name:LastName   John
+    input text  name:Email      anch@gmail.com
+    input text  name:Password   davidjohn
+    input text  name:ConfirmPassword    davidjohn
+
+In terminal type this and see output --> robot TestCases\SpeedTest.robot
+------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+RegTest
+    open browser    http://demowebshop.tricentis.com/register   chrome
+    maximize browser window
+    ${speed}=   get selenium speed
+    log to console  ${speed}
+    set selenium speed  2 seconds
+    select radio button    Gender  M
+    input text  name:FirstName  David
+    input text  name:LastName   John
+    input text  name:Email      anch@gmail.com
+    input text  name:Password   davidjohn
+    input text  name:ConfirmPassword    davidjohn
+    ${speed}=   get selenium speed
+    log to console  ${speed}
+
+In terminal type this and see output --> robot TestCases\SpeedTest.robot
+------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+RegTest
+    open browser    http://demowebshop.tricentis.com/register   chrome
+    maximize browser window
+    wait until page contains    Register
+    set selenium speed  2 seconds
+    select radio button    Gender  M
+    input text  name:FirstName  David
+    input text  name:LastName   John
+    input text  name:Email      anch@gmail.com
+    input text  name:Password   davidjohn
+    input text  name:ConfirmPassword    davidjohn
+
+In terminal type this and see output --> robot TestCases\TimeOutTests.robot
+------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+RegTest
+    open browser    http://demowebshop.tricentis.com/register   chrome
+    maximize browser window
+    wait until page contains    Registration
+    set selenium speed  2 seconds
+    select radio button    Gender  M
+    input text  name:FirstName  David
+    input text  name:LastName   John
+    input text  name:Email      anch@gmail.com
+    input text  name:Password   davidjohn
+    input text  name:ConfirmPassword    davidjohn
+
+In terminal type this and see output --> robot TestCases\TimeOutTests.robot
+-------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+RegTest
+    open browser    http://demowebshop.tricentis.com/register   chrome
+    maximize browser window
+    set selenium timeout    10 seconds
+    wait until page contains    Registration
+    select radio button    Gender  M
+    input text  name:FirstName  David
+    input text  name:LastName   John
+    input text  name:Email      anch@gmail.com
+    input text  name:Password   davidjohn
+    input text  name:ConfirmPassword    davidjohn
+In terminal type this and see output --> robot TestCases\TimeOutTests.robot
+--------------===============
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+RegTest
+    open browser    http://demowebshop.tricentis.com/register   chrome
+    maximize browser window
+    ${time}=   get selenium timeout
+    log to console  ${time}
+    set selenium timeout    10 seconds
+    wait until page contains    Registration
+    select radio button    Gender  M
+    input text  name:FirstName  David
+    input text  name:LastName   John
+    input text  name:Email      anch@gmail.com
+    input text  name:Password   davidjohn
+    input text  name:ConfirmPassword    davidjohn
+
+In terminal type this and see output --> robot TestCases\TimeOutTests.robot
+--------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+RegTest
+    open browser    http://demowebshop.tricentis.com/register   chrome
+    maximize browser window
+    set selenium implicit wait  10 seconds
+    select radio button    Gender  M
+    input text  name:FirstName1  David
+    input text  name:LastName   John
+    input text  name:Email      anch@gmail.com
+    input text  name:Password   davidjohn
+    input text  name:ConfirmPassword    davidjohn
+
+In terminal type this and see output --> robot TestCases\ImplicitTimeOut.robot
+------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+RegTest
+    open browser    http://demowebshop.tricentis.com/register   chrome
+    maximize browser window
+    ${time}=   get selenium implicit wait
+    log to console  ${time}
+    set selenium implicit wait  10 seconds
+    select radio button    Gender  M
+    input text  name:FirstName1  David
+    input text  name:LastName   John
+    input text  name:Email      anch@gmail.com
+    input text  name:Password   davidjohn
+    input text  name:ConfirmPassword    davidjohn
+
+In terminal type this and see output --> robot TestCases\ImplicitTimeOut.robot
+-----------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+MyTestCase
+    open browser    http://demowebshop.tricentis.com/register   chrome
+    maximize browser window
+
+    open browser    http://automationpractice.com/index.php     chrome
+    maximize browser window
+
+    #close browser
+    close all browsers
+
+In terminal type this and see output --> robot TestCases\CloseAllRobot.robot
+--------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+HandlingAlerts
+    open browser    https://testautomationpractice.blogspot.com/    chrome
+    click element   xpath://*[@id="HTML9"]/div[1]/button
+    sleep   3
+    handle alert    accept
+
+In terminal type this and see output --> robot TestCases\Alerts.robot
+-----------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+HandlingAlerts
+    open browser    https://testautomationpractice.blogspot.com/    chrome
+    click element   xpath://*[@id="HTML9"]/div[1]/button
+    sleep   3
+    #handle alert    accept
+    handle alert    dismiss
+In terminal type this and see output --> robot TestCases\Alerts.robot
+-----------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+HandlingAlerts
+    open browser    https://testautomationpractice.blogspot.com/    chrome
+    click element   xpath://*[@id="HTML9"]/div[1]/button
+    sleep   3
+    #handle alert    accept
+    #handle alert    dismiss
+    handle alert    Leave
+In terminal type this and see output --> robot TestCases\Alerts.robot
+-----------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+HandlingAlerts
+    open browser    https://testautomationpractice.blogspot.com/    chrome
+    click element   xpath://*[@id="HTML9"]/div[1]/button
+    sleep   3
+    #handle alert    accept
+    #handle alert    dismiss
+    #handle alert    Leave
+    alert should be present     Press a button!
+
+In terminal type this and see output --> robot TestCases\Alerts.robot
+----------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+HandlingAlerts
+    open browser    https://testautomationpractice.blogspot.com/    chrome
+    click element   xpath://*[@id="HTML9"]/div[1]/button
+    sleep   3
+    #handle alert    accept
+    #handle alert    dismiss
+    #handle alert    Leave
+    alert should not be present     Press a button!
+
+In terminal type this and see output --> robot TestCases\Alerts.robot
+----------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+Testing Frames
+    open browser    https://www.selenium.dev/selenium/docs/api/java/index.html?overview-summary.html    chrome
+    select frame    packageListFrame
+    click link      org.openqa.selenium
+    unselect frame
+
+    select frame    packageFrame
+    click link      WebDriver
+    unselect frame
+
+    select frame    classFrame
+    click link      Help
+    unselect frame
+
+    close browser
+
+In terminal type this and see output --> robot TestCases\Frames.robot
+----------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+Testing Frames
+    open browser    https://www.selenium.dev/selenium/docs/api/java/index.html?overview-summary.html    chrome
+    select frame    packageListFrame
+    click link      org.openqa.selenium
+    unselect frame
+    sleep   3
+
+    select frame    packageFrame
+    click link      WebDriver
+    unselect frame
+    sleep   3
+
+    select frame    classFrame
+    click link      Help
+    unselect frame
+    sleep   3
+
+    close browser
+In terminal type this and see output --> robot TestCases\Frames.robot
+----------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+Testing Frames
+    open browser    https://www.selenium.dev/selenium/docs/api/java/index.html?overview-summary.html    chrome
+    maximize browser window
+
+    select frame    packageListFrame
+    click link      org.openqa.selenium
+    unselect frame
+    sleep   3
+
+    select frame    packageFrame
+    click link      WebDriver
+    unselect frame
+    sleep   3
+
+    select frame    classFrame
+    click link      Index
+    unselect frame
+    sleep   3
+
+    close browser
+In terminal type this and see output --> robot TestCases\Frames.robot
+------------------
+demo.automationtesting.in/Windows.html
+//a[@href='http://www.selenium.dev']//button[@class='btn btn-info'][normalize-space()='click']
+//a[@class='nav-item'][normalize-space()='Documentation']
+/html[1]/body[1]/header[1]/nav[1]/a[3]
+
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+TabbedWindowTest
+    open browser    http://demo.automationtesting.in/Windows.html   chrome
+    click element   xpath://a[@href='http://www.selenium.dev']//button[@class='btn btn-info'][normalize-space()='click']
+    select window   title=SeleniumHQ Browser Automation
+    click element   xpath:/html[1]/body[1]/header[1]/nav[1]/a[3]
+    sleep   3
+    close all browsers
+
+In terminal type this and see output --> robot TestCases\TabbedWindows.robot
+--------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+MultipleBrowsersTest
+    open browser    https://www.google.com/     chrome
+    maximize browser window
+
+    sleep   3
+
+    open browser    https://www.bing.com/     chrome
+    maximize browser window
+
+    switch browser  1
+    ${title1}=   get title
+    log to console      ${title1}
+
+    switch browser  2
+    ${title2}=   get title
+    log to console      ${title2}
+
+    sleep   3
+    close all browsers
+
+
+
+In terminal type this and see output -->robot TestCases\SwitchToMultipleBrowsers.robot
+-----------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+NavigationTest
+    open browser    https://www.google.com/     chrome
+    maximize browser window
+    ${loc}=     get location
+    log to console      ${loc}
+    sleep   3
+
+    go to   https://www.bing.com/
+    ${loc}=     get location
+    log to console      ${loc}
+    sleep   3
+
+    go back
+    ${loc}=     get location
+    log to console      ${loc}
+    sleep   3
+
+In terminal type this and see output -->robot TestCases\NavigationKeywords.robot
+-----------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+NavigationTest
+    open browser    https://www.google.com/     chrome
+    maximize browser window
+    ${loc}=     get location
+    log to console      ${loc}
+    sleep   3
+
+    go to   https://www.bing.com/
+    ${loc}=     get location
+    log to console      ${loc}
+    sleep   3
+
+    go back
+    ${loc}=     get location
+    log to console      ${loc}
+    sleep   3
+    close browser
+In terminal type this and see output -->robot TestCases\NavigationKeywords.robot
+-----------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+LoginTC
+    open browser    https://opensource-demo.orangehrmlive.com/  chrome
+    maximize browser window
+    input text      id:txtUsername      Admin
+    input text      id:txtPassword      admin123
+    capture element screenshot  xpath://div[@id='divLogo']//img     C:/Users/amuthaiya/PycharmProjects/pythonAutomationProject/TestCases/LogoFeb.png
+
+    capture page screenshot     C:/Users/amuthaiya/PycharmProjects/pythonAutomationProject/TestCases/LoginTCFull.png
+
+In terminal type this and see output -->robot TestCases\CaptureScreen.robot
+--------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+LoginTC
+    open browser    https://opensource-demo.orangehrmlive.com/  chrome
+    maximize browser window
+    input text      id:txtUsername      Admin
+    input text      id:txtPassword      admin123
+    capture element screenshot  xpath://div[@id='divLogo']//img     LogoFeb.png
+
+    capture page screenshot     LoginTCFull.png
+
+In terminal type this and see output -->robot TestCases\CaptureScreen.robot
+--------------
+https://testautomationpractice.blogspot.com/
+
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+MouseActions
+    #Right click /open context menu
+    open browser    http://swisnl.github.io/jQuery-contextMenu/demo.html    chrome
+    maximize browser window
+    open context menu   xpath://span[@class='context-menu-one btn btn-neutral']
+    sleep   3
+In terminal type this and see output -->robot TestCases\MouseOperations.robot
+--------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+MouseActions
+    #Right click /open context menu
+    open browser    http://swisnl.github.io/jQuery-contextMenu/demo.html    chrome
+    #maximize browser window
+    #open context menu   xpath://span[@class='context-menu-one btn btn-neutral']
+    #sleep   3
+
+    #Double click action
+    go to   https://testautomationpractice.blogspot.com/
+    maximize browser window
+    double click element    xpath://button[normalize-space()='Copy Text']
+    sleep   3
+
+In terminal type this and see output -->robot TestCases\MouseOperations.robot
+--------------
+
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+MouseActions
+    #Right click /open context menu
+    open browser    http://swisnl.github.io/jQuery-contextMenu/demo.html    chrome
+    #maximize browser window
+    #open context menu   xpath://span[@class='context-menu-one btn btn-neutral']
+    #sleep   3
+
+    #Double click action
+    go to   https://testautomationpractice.blogspot.com/
+    maximize browser window
+    double click element    xpath://button[normalize-space()='Copy Text']
+    sleep   3
+
+    #Drag and drop down
+    go to   http://dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html
+    maximize browser window
+    drag and drop   id:box3     id:box103
+    sleep   5
+
+    close browser
+In terminal type this and see output -->robot TestCases\MouseOperations.robot
+---------------------------------------------------------------------------------------------------
+Part 13- User Defined Keywords & Resource Files in Robot Framework | Selenium with Python:
+=============================================================================================
+
+User Defined Keywords with no (without) arguments:
+================================================== 
+
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Variables ***
+${url}      https://opensource-demo.orangehrmlive.com/
+${browser}  chrome
+
+*** Test Cases ***
+TC1
+    launchBrowser
+    input text      id:txtUsername      Admin
+    input text      id:txtPassword      admin123
+
+*** Keywords ***
+launchBrowser
+    open browser    ${url}  ${browser}
+    maximize browser window
+
+In terminal type this and see output -->robot TestCases\UserKeywords.robot
+-------------
+User Defined Keywords with arguments:
+=======================================
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Variables ***
+${url}      https://opensource-demo.orangehrmlive.com/
+${browser}  chrome
+
+*** Test Cases ***
+TC1
+    launchBrowser   ${url}      ${browser}
+    input text      id:txtUsername      Admin
+    input text      id:txtPassword      admin123
+
+*** Keywords ***
+launchBrowser
+    [Arguments]  ${appurl}  ${appbrowser}
+    open browser    ${appurl}  ${appbrowser}
+    maximize browser window
+
+In terminal type this and see output -->robot TestCases\UserKeywords.robot
+-------------
+User Defined Keywords with arguments and return value:
+========================================================
+
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Variables ***
+${url}      https://opensource-demo.orangehrmlive.com/
+${browser}  chrome
+
+*** Test Cases ***
+TC1
+
+    ${PageTitle}=   launchBrowser   ${url}      ${browser}
+    log to console  ${PageTitle}
+    input text      id:txtUsername      Admin
+    input text      id:txtPassword      admin123
+
+*** Keywords ***
+launchBrowser
+    [Arguments]  ${appurl}  ${appbrowser}
+    open browser    ${appurl}  ${appbrowser}
+    maximize browser window
+    ${title}=   get title
+    [Return]    ${title}
+In terminal type this and see output -->robot TestCases\UserKeywords.robot
+--------------------------------------
+*** Settings ***
+Library  SeleniumLibrary
+Resource  ../Resources/resources.robot
+
+*** Variables ***
+${url}      https://opensource-demo.orangehrmlive.com/
+${browser}  chrome
+
+*** Test Cases ***
+TC1
+
+    ${PageTitle}=   launchBrowser   ${url}      ${browser}
+    log to console  ${PageTitle}
+    log     ${PageTitle}
+    input text      id:txtUsername      Admin
+    input text      id:txtPassword      admin123
+
+------
+resources.robot:
+=================
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Keywords ***
+launchBrowser
+    [Arguments]  ${appurl}  ${appbrowser}
+    open browser    ${appurl}  ${appbrowser}
+    maximize browser window
+    ${title}=   get title
+    [Return]    ${title}
+
+In terminal type this and see output -->robot TestCases\UserKeywords.robot
+-------------------------------------------------------------------------------------------------
+Part 14- Scrolling Page using JavaScript executor in Robot Framework | Selenium with Python
+=============================================================================================
+
+Scroll page till it reach a pixel number:
+==========================================
+
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+ScrollingTest
+    open browser    https://www.countries-ofthe-world.com/flags-of-the-world.html      chrome
+    maximize browser window
+    execute javascript  window.scrollTo(0,2500)
+
+In terminal type this and see output -->robot TestCases\ScrollingPage.robot
+------------------------
+Scroll page till find element on page:
+=========================================
+
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+ScrollingTest
+    open browser    https://www.countries-ofthe-world.com/flags-of-the-world.html      chrome
+    maximize browser window
+    #execute javascript  window.scrollTo(0,2500)
+    scroll element into view  xpath://body[1]/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/table[1]/tbody[1]/tr[86]/td[1]
+
+In terminal type this and see output -->robot TestCases\ScrollingPage.robot
+------------------------
+Scroll page till find element on page:
+=========================================
+
+
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+ScrollingTest
+    open browser    https://www.countries-ofthe-world.com/flags-of-the-world.html      chrome
+    maximize browser window
+    scroll element into view   xpath://img[@alt='Flag of India']  --->india flag xpath
+    scroll element into view    xpath://html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/table[1]/tbody[1]/tr[86]/td[1]/img[1]  --->india flag xpath
+
+In terminal type this and see output -->robot TestCases\ScrollingPage.robot
+
+---------------
+Scroll page till the bottom:
+==============================
+
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+ScrollingTest
+    open browser    https://www.countries-ofthe-world.com/flags-of-the-world.html      chrome
+    maximize browser window
+    #execute javascript  window.scrollTo(0,2500)
+    #scroll element into view  xpath://body[1]/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/table[1]/tbody[1]/tr[86]/td[1]
+    execute javascript      window.scrollTo(0,document.body.scrollHeight)
+
+In terminal type this and see output -->robot TestCases\ScrollingPage.robot
+------------------------
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+ScrollingTest
+    open browser    https://www.countries-ofthe-world.com/flags-of-the-world.html      chrome
+    maximize browser window
+    #execute javascript  window.scrollTo(0,2500)
+    #scroll element into view  xpath://body[1]/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/table[1]/tbody[1]/tr[86]/td[1]
+    execute javascript      window.scrollTo(0,document.body.scrollHeight) #goes to end of page
+    sleep   5
+    execute javascript      window.scrollTo(0,-document.body.scrollHeight) #goes to starting of page
+
+In terminal type this and see output -->robot TestCases\ScrollingPage.robot
+--------------------------------------------------------------------------------------------------
+Part 15- How to work with FOR loop in Robot Framework | Selenium with Python :
+==================================================================================
+*** Test Cases ***
+Forloopexample
+    : FOR     ${i}    IN RANGE    1   10
+    \   log to console  ${i}
+
+
+In terminal type this and see output -->robot TestCases\ForLoopDemo.robot
+
+O/P:
+==============================================================================
+ForLoopDemo
+==============================================================================
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\ForLoopDemo.robot' in FOR loop starting on line 3: For loop he
+ader ': FOR' is deprecated. Use 'FOR' instead.
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\ForLoopDemo.robot' in FOR loop starting on line 3: Marking for
+ loop body with '\' is deprecated. Remove markers and use 'END' instead.
+Forloopexample                                                        1
+2
+3
+4
+5
+6
+7
+8
+9
+
+-----------------
+*** Test Cases ***
+Forloopexample
+    FOR     ${i}    IN RANGE    1   10
+    log to console  ${i}
+    END
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\ForLoopDemo.robot
+==============================================================================
+ForLoopDemo
+==============================================================================
+Forloopexample                                                        1
+2
+3
+4
+5
+6
+7
+8
+9
+Forloopexample                                                        | PASS |
+
+
+-------------------------
+*** Test Cases ***
+#Forloopexample
+#    FOR     ${i}    IN RANGE    1   10
+#    log to console  ${i}
+#    END
+
+Forloopexample
+    FOR     ${i}    IN      1 2 3 4 5 6 7 8 9  #--->each values should be given only one space in between so that all values will be printed in same line
+    log to console  ${i}
+    END
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\ForLoopDemo.robot
+==============================================================================
+ForLoopDemo
+==============================================================================
+Forloopexample                                                        1 2 3 4 5 6 7 8 9
+Forloopexample                                                        | PASS |
+---------------
+*** Test Cases ***
+#Forloopexample
+#    FOR     ${i}    IN RANGE    1   10
+#    log to console  ${i}
+#    END
+
+Forloopexample2
+    FOR     ${i}    IN      1  2  3  4  5  6  7  8  9 #--->each values should be given two spaces in between so that all values will be printed in different line
+    log to console  ${i}
+    END
+
+O/P:
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\ForLoopDemo.robot
+==============================================================================
+ForLoopDemo
+==============================================================================
+Forloopexample2                                                       1
+2
+3
+4
+5
+6
+7
+8
+9
+Forloopexample2                                                       | PASS |
+-----------------
+*** Test Cases ***
+#Forloopexample
+#    FOR     ${i}    IN RANGE    1   10
+#    log to console  ${i}
+#    END
+
+#Forloopexample2
+#    FOR     ${i}    IN      1  2  3  4  5  6  7  8  9
+#    log to console  ${i}
+#    END
+
+Forloop3withlist
+    @{items}    create list     1  2  3  4  5  #--->each values should be given two spaces in between so that all values will be printed in different line
+    : FOR   ${i}    IN      @{items}
+    \   log to console      ${i}
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\ForLoopDemo.robot
+==============================================================================
+ForLoopDemo
+==============================================================================
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\ForLoopDemo.robot' in FOR loop starting on line 14: For loop h
+eader ': FOR' is deprecated. Use 'FOR' instead.
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\ForLoopDemo.robot' in FOR loop starting on line 14: Marking fo
+r loop body with '\' is deprecated. Remove markers and use 'END' instead.
+Forloop3withlist                                                      1 2 3 4 5
+Forloop3withlist                                                      | PASS |
+----------------
+*** Test Cases ***
+#Forloopexample
+#    FOR     ${i}    IN RANGE    1   10
+#    log to console  ${i}
+#    END
+
+#Forloopexample2
+#    FOR     ${i}    IN      1  2  3  4  5  6  7  8  9
+#    log to console  ${i}
+#    END
+
+#Forloop3withlist
+#    @{items}    create list     1  2  3  4  5
+#    : FOR   ${i}    IN      @{items}
+#    \   log to console      ${i}
+
+Forloop4
+    : FOR   ${i}    IN  john  david  smith  scott
+    \   log to console      ${i}
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\ForLoopDemo.robot
+==============================================================================
+ForLoopDemo
+==============================================================================
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\ForLoopDemo.robot' in FOR loop starting on line 18: For loop h
+eader ': FOR' is deprecated. Use 'FOR' instead.
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\ForLoopDemo.robot' in FOR loop starting on line 18: Marking fo
+r loop body with '\' is deprecated. Remove markers and use 'END' instead.
+Forloop4                                                              john
+david
+smith
+scott
+Forloop4                                                              | PASS |
+--------------
+*** Test Cases ***
+#Forloopexample
+#    FOR     ${i}    IN RANGE    1   10
+#    log to console  ${i}
+#    END
+
+#Forloopexample2
+#    FOR     ${i}    IN      1  2  3  4  5  6  7  8  9
+#    log to console  ${i}
+#    END
+
+#Forloop3withlist
+#    @{items}    create list     1  2  3  4  5
+#    : FOR   ${i}    IN      @{items}
+#    \   log to console      ${i}
+
+#Forloop4
+#    : FOR   ${i}    IN  john  david  smith  scott
+#    \   log to console      ${i}
+
+Forloop5
+    @{nameslist}    create list     john  david  smith  scott
+    : FOR   ${i}    IN  @{nameslist}
+    \   log to console      ${i}
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\ForLoopDemo.robot
+==============================================================================
+ForLoopDemo
+==============================================================================
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\ForLoopDemo.robot' in FOR loop starting on line 23: For loop h
+eader ': FOR' is deprecated. Use 'FOR' instead.
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\ForLoopDemo.robot' in FOR loop starting on line 23: Marking fo
+r loop body with '\' is deprecated. Remove markers and use 'END' instead.
+Forloop5                                                              john
+david
+smith
+scott
+Forloop5                                                              | PASS |
+---------------
+*** Test Cases ***
+#Forloopexample
+#    FOR     ${i}    IN RANGE    1   10
+#    log to console  ${i}
+#    END
+
+#Forloopexample2
+#    FOR     ${i}    IN      1  2  3  4  5  6  7  8  9
+#    log to console  ${i}
+#    END
+
+#Forloop3withlist
+#    @{items}    create list     1  2  3  4  5
+#    : FOR   ${i}    IN      @{items}
+#    \   log to console      ${i}
+
+#Forloop4
+#    : FOR   ${i}    IN  john  david  smith  scott
+#    \   log to console      ${i}
+
+#Forloop5
+#    @{nameslist}    create list     john  david  smith  scott
+#    : FOR   ${i}    IN  @{nameslist}
+#    \   log to console      ${i}
+
+Forloop6withExit
+    @{items}    create list     1  2  3  4  5
+    : FOR   ${i}    IN  @{items}
+    \   log to console  ${i}
+    \   exit for loop if    ${i}==3
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\ForLoopDemo.robot
+==============================================================================
+ForLoopDemo
+==============================================================================
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\ForLoopDemo.robot' in FOR loop starting on line 28: For loop h
+eader ': FOR' is deprecated. Use 'FOR' instead.
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\ForLoopDemo.robot' in FOR loop starting on line 28: Marking fo
+r loop body with '\' is deprecated. Remove markers and use 'END' instead.
+Forloop6withExit                                                      1
+2
+3
+Forloop6withExit                                                      | PASS |
+--------------------------------------------------------------------------------------
+Part 16- How to Count & Extract Link Texts in Robot Framework | Selenium with Python:
+=======================================================================================
+To Count Total links in Robot Framework:
+===========================================
+
+*** Settings ***
+Library     SeleniumLibrary
+
+*** Test Cases ***
+GetAllLinksTest
+    open browser    https://www.amazon.com/     chrome
+    maximize browser window
+    ${AllLinksCount}=   get element count   xpath://a
+    log to console  ${AllLinksCount}
+
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\GetAllLinks.robot
+==============================================================================
+GetAllLinks
+==============================================================================
+GetAllLinksTest
+DevTools listening on ws://127.0.0.1:62047/devtools/browser/e89f77a8-df1f-429d-9160-1a3d1af13723
+.[19100:11940:0219/183923.021:ERROR:device_event_log_impl.cc(211)] [18:39:23.021] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node co
+nnection: A device attached to the system is not functioning. (0x1F)
+[19100:11940:0219/183923.023:ERROR:device_event_log_impl.cc(211)] [18:39:23.023] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node con
+nection: A device attached to the system is not functioning. (0x1F)
+..162
+GetAllLinksTest                                                       | PASS |
+------------------------
+To extract link from web page and display all links in console:
+=================================================================
+*** Settings ***
+Library     SeleniumLibrary
+
+*** Test Cases ***
+GetAllLinksTest
+    open browser    https://www.amazon.com/     chrome
+    maximize browser window
+    ${AllLinksCount}=   get element count   xpath://a
+    log to console  ${AllLinksCount}
+
+    @{LinkItems}    create list
+
+    : FOR     ${i}    IN RANGE    1   ${AllLinksCount}   #-->here it displays all links from 1 to alllinkscount-1 (i.e 1 to n-1)
+    #: FOR     ${i}    IN RANGE    1   ${AllLinksCount}+1 #-->to display all links from 1 to alllinkscount we add +1 in end.(i.e 1 to n+1)
+    \   ${linkText}=    get text    xpath:(//a)[${i}]
+    \   log to console  ${linkText}
+-------------
+To extract link from web page and display links in console with condition:
+=================================================================
+*** Settings ***
+Library     SeleniumLibrary
+
+*** Test Cases ***
+GetAllLinksTest
+    open browser    https://www.amazon.com/     chrome
+    maximize browser window
+    ${AllLinksCount}=   get element count   xpath://a
+    log to console  ${AllLinksCount}
+
+    @{LinkItems}    create list
+
+    : FOR     ${i}    IN RANGE    1   ${AllLinksCount}
+    \   ${linkText}=    get text    xpath:(//a)[${i}]
+    \   exit for loop if    ${i}==6
+    \   log to console  ${linkText}
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\GetAllLinks.robot
+==============================================================================
+GetAllLinks
+==============================================================================
+GetAllLinksTest
+DevTools listening on ws://127.0.0.1:59844/devtools/browser/6297f221-7949-4fdc-952e-92b7b506eae6
+[8668:15036:0219/193017.779:ERROR:device_event_log_impl.cc(211)] [19:30:17.779] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conn
+ection: A device attached to the system is not functioning. (0x1F)
+[8668:15036:0219/193017.784:ERROR:device_event_log_impl.cc(211)] [19:30:17.783] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conn
+ection: A device attached to the system is not functioning. (0x1F)
+...162
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\GetAllLinks.robot' in FOR loop starting on line 13: For loop h
+eader ': FOR' is deprecated. Use 'FOR' instead.
+[ WARN ] Error in file 'C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\TestCases\GetAllLinks.robot' in FOR loop starting on line 13: Marking fo
+r loop body with '\' is deprecated. Remove markers and use 'END' instead.
+GetAllLinksTest
+Skip to main content
+
+Deliver to
+India
+
+GetAllLinksTest                                                       | PASS |
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Part 17- How to Handle Web/HTML Table in Robot Framework | Selenium with Python :
+=====================================================================================
+To count number of rows and columns in a table in webpage:
+*** Settings ***
+Library     SeleniumLibrary
+
+*** Test Cases ***
+TableValidations
+    open browser    https://testautomationpractice.blogspot.com/    chrome
+    maximize browser window
+    ${rows}=    get element count   xpath://table[@name='BookTable']/tbody/tr
+    ${cols}=    get element count   xpath://table[@name='BookTable']/tbody/tr[1]/th
+    log to console  ${rows}
+    log to console  ${cols}
+
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\TableDemo.robot
+==============================================================================
+TableDemo
+==============================================================================
+TableValidations
+DevTools listening on ws://127.0.0.1:61016/devtools/browser/828049e3-0b5e-42cd-bcc3-6dcd0b3d3532
+[6236:2696:0222/093443.508:ERROR:device_event_log_impl.cc(211)] [09:34:43.508] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conne
+ction: A device attached to the system is not functioning. (0x1F)
+....7
+.4
+TableValidations                                                      | PASS |
+----------------------------------------------------------------------------------------------------
+Capture data in rows and columns present inside a table:
+=========================================================
+*** Settings ***
+Library     SeleniumLibrary
+
+*** Test Cases ***
+TableValidations
+    open browser    https://testautomationpractice.blogspot.com/    chrome
+    maximize browser window
+    ${rows}=    get element count   xpath://table[@name='BookTable']/tbody/tr
+    ${cols}=    get element count   xpath://table[@name='BookTable']/tbody/tr[1]/th
+    log to console  ${rows}
+    log to console  ${cols}
+
+    ${data}=    get text    xpath://table[@name='BookTable']/tbody/tr[5]/td[1]
+    log to console  ${data}
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\TableDemo.robot
+==============================================================================
+TableDemo
+==============================================================================
+TableValidations
+DevTools listening on ws://127.0.0.1:61923/devtools/browser/dbfe8dbe-c529-4ed3-ba1a-a3f1de62f37c
+....7
+.4
+..Master In Selenium
+------------------------------------------------------------------------------------------------
+*** Settings ***
+Library     SeleniumLibrary
+
+*** Test Cases ***
+TableValidations
+    open browser    https://testautomationpractice.blogspot.com/    chrome
+    maximize browser window
+    ${rows}=    get element count   xpath://table[@name='BookTable']/tbody/tr
+    ${cols}=    get element count   xpath://table[@name='BookTable']/tbody/tr[1]/th
+    log to console  ${rows}
+    log to console  ${cols}
+
+    ${data}=    get text    xpath://table[@name='BookTable']/tbody/tr[5]/td[1]
+    log to console  ${data}
+
+    table column should contain     xpath://table[@name='BookTable']     2   Author
+    table row should contain     xpath://table[@name='BookTable']     4   Learn JS
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\TableDemo.robot
+==============================================================================
+TableDemo
+==============================================================================
+TableValidations
+DevTools listening on ws://127.0.0.1:64526/devtools/browser/290a114d-4ca3-4e07-ad39-170bffde59cd
+[8408:9344:0222/104902.619:ERROR:device_event_log_impl.cc(211)] [10:49:02.619] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conne
+ction: A device attached to the system is not functioning. (0x1F)
+[8408:9344:0222/104902.621:ERROR:device_event_log_impl.cc(211)] [10:49:02.621] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conne
+ction: A device attached to the system is not functioning. (0x1F)
+....7
+.4
+..Master In Selenium
+TableValidations                                                      | PASS |
+------------------------------------------------------------------------------
+TableDemo                                                             | PASS |
+1 critical test, 1 passed, 0 failed
+1 test total, 1 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\TableDemo.robot
+==============================================================================
+TableDemo
+==============================================================================
+TableValidations
+DevTools listening on ws://127.0.0.1:64733/devtools/browser/7226d33d-e88c-4c1f-ac08-8bcd8ac3abf3
+[15396:2808:0222/105138.541:ERROR:device_event_log_impl.cc(211)] [10:51:38.542] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conn
+ection: A device attached to the system is not functioning. (0x1F)
+[15396:2808:0222/105138.542:ERROR:device_event_log_impl.cc(211)] [10:51:38.543] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conn
+ection: A device attached to the system is not functioning. (0x1F)
+....7
+.4
+..Master In Selenium
+TableValidations                                                      | FAIL |
+Table 'xpath://table[@name='BookTable']' column 2 did not contain text 'Authour'.
+------------------------------------------------------------------------------
+TableDemo                                                             | FAIL |
+1 critical test, 0 passed, 1 failed
+1 test total, 0 passed, 1 failed
+==============================================================================
+*** Settings ***
+Library     SeleniumLibrary
+
+*** Test Cases ***
+TableValidations
+    open browser    https://testautomationpractice.blogspot.com/    chrome
+    maximize browser window
+    ${rows}=    get element count   xpath://table[@name='BookTable']/tbody/tr
+    ${cols}=    get element count   xpath://table[@name='BookTable']/tbody/tr[1]/th
+    log to console  ${rows}
+    log to console  ${cols}
+
+    ${data}=    get text    xpath://table[@name='BookTable']/tbody/tr[5]/td[1]
+    log to console  ${data}
+
+    table column should contain     xpath://table[@name='BookTable']     2   Author
+    table row should contain     xpath://table[@name='BookTable']     4   Learn JS
+    table cell should contain   xpath://table[@name='BookTable']    5   2   Mukesh
+    table header should contain     xpath://table[@name='BookTable']    BookName
+
+    close browser
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\TableDemo.robot
+==============================================================================
+TableDemo
+==============================================================================
+TableValidations
+DevTools listening on ws://127.0.0.1:65135/devtools/browser/d3a20d76-585a-41fd-97c5-f7cadfd8a65e
+[18732:11180:0222/105805.240:ERROR:device_event_log_impl.cc(211)] [10:58:05.240] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node con
+nection: A device attached to the system is not functioning. (0x1F)
+....7
+.4
+..Master In Selenium
+TableValidations                                                      | PASS |
+------------------------------------------------------------------------------
+TableDemo                                                             | PASS |
+1 critical test, 1 passed, 0 failed
+1 test total, 1 passed, 0 failed
+==============================================================================--------------------------------------------------------------------------------
+Part 18- Data Driven Testing Using Script in Robot Framework | Selenium with Python :
+======================================================================================
+login_resources.robot:
+
+*** Settings ***
+Library     SeleniumLibrary
+
+*** Variables ***
+${LOGIN URL}    https://admin-demo.nopcommerce.com
+${BROWSER}      chrome
+
+*** Keywords ***
+Open my Browser
+    open browser    ${LOGIN URL}    ${BROWSER}
+    maximize browser window
+
+Close my Browser
+    close all browsers
+
+Open Login Page
+    go to   ${LOGIN URL}
+
+Input username
+    [Arguments]  ${username}
+    input text      id:Email    ${username}
+
+Input pwd
+    [Arguments]     ${password}
+    input text      id:Password     ${password}
+
+click login button
+    click element   xpath://input[@value='Log in']
+
+click logout link
+    click link      Logout
+
+Error message should be visible
+    page should contain     Login was unsuccessful
+
+
+Dashboard page should be visible
+    page should contain     Dashboard
+-----------------
+DDT1.robot:
+
+*** Settings ***
+Library     SeleniumLibrary
+Resource    ../Resources/login_resouces.robot
+Suite Setup         Open my Browser
+Suite Teardown      Close my Browser
+Test Template       Invalid login
+
+
+*** Test Cases ***              username                password
+Right user empty pass       admin@yourstore.com         ${EMPTY}
+Right user wrong pass       admin@yourstore.com         xyz
+Wrong user right pass       ad@yourstore.com            admin
+Wrong user empty pass       adm@yourstore.com           ${EMPTY}
+Wrong user wrong pass       adm@yourstore.com           xyz
+
+
+*** Keywords ***
+Invalid login
+    [Arguments]     ${username}     ${password}
+    Input username  ${username}
+    Input pwd       ${password}
+    click login button
+    Error message should be visible
+
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\DDT1.robot
+==============================================================================
+DDT1
+==============================================================================
+
+DevTools listening on ws://127.0.0.1:52434/devtools/browser/0afba572-8989-4fee-b65c-c970a813b9c4
+[9472:20824:0222/174934.179:ERROR:device_event_log_impl.cc(211)] [17:49:34.179] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conn
+ection: A device attached to the system is not functioning. (0x1F)
+[9472:20824:0222/174934.183:ERROR:device_event_log_impl.cc(211)] [17:49:34.183] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conn
+ection: A device attached to the system is not functioning. (0x1F)
+Right user empty pass                                                 | PASS |
+------------------------------------------------------------------------------
+Right user wrong pass                                                 | PASS |
+------------------------------------------------------------------------------
+Wrong user right pass                                                 | PASS |
+------------------------------------------------------------------------------
+Wrong user empty pass                                                 | PASS |
+------------------------------------------------------------------------------
+Wrong user wrong pass                                                 | PASS |
+------------------------------------------------------------------------------
+DDT1                                                                  | PASS |
+5 critical tests, 5 passed, 0 failed
+5 tests total, 5 passed, 0 failed
+==============================================================================
+Part 19- Data Driven Testing Using Excel & CSV Files in Robot Framework | Selenium with Python :
+===================================================================================================
+login_resouces.robot:
+
+*** Settings ***
+Library     SeleniumLibrary
+
+*** Variables ***
+${LOGIN URL}    https://admin-demo.nopcommerce.com
+${BROWSER}      chrome
+
+*** Keywords ***
+Open my Browser
+    open browser    ${LOGIN URL}    ${BROWSER}
+    maximize browser window
+
+Close my Browser
+    close all browsers
+
+Open Login Page
+    go to   ${LOGIN URL}
+
+Input username
+    [Arguments]  ${username}
+    input text      id:Email    ${username}
+
+Input pwd
+    [Arguments]     ${password}
+    input text      id:Password     ${password}
+
+click login button
+    click element   xpath://input[@value='Log in']
+
+click logout link
+    click link      Logout
+
+Error message should be visible
+    page should contain     Login was unsuccessful
+
+
+Dashboard page should be visible
+    page should contain     Dashboard
+----------
+*** Settings ***
+Library     SeleniumLibrary
+Resource    ../Resources/login_resouces.robot
+Library     DataDriver      ../TestData/LoginData.xlsx      sheet_name=Sheet1
+Suite Setup         Open my Browser
+Suite Teardown      Close my Browser
+Test Template       Invalid login
+
+
+*** Test Cases ***
+LoginTestwithExcel using ${username} ${password}
+
+
+*** Keywords ***
+Invalid login
+    [Arguments]     ${username}     ${password}
+    Input username  ${username}
+    Input pwd       ${password}
+    click login button
+    Error message should be visible
+
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\DDT2_Excel.robot
+==============================================================================
+DDT2 Excel
+==============================================================================
+
+DevTools listening on ws://127.0.0.1:56230/devtools/browser/6e1c8e17-83a9-4b36-8da9-26e4c1c16594
+[20136:12852:0222/184348.445:ERROR:device_event_log_impl.cc(211)] [18:43:48.446] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node con
+nection: A device attached to the system is not functioning. (0x1F)
+[20136:12852:0222/184348.473:ERROR:device_event_log_impl.cc(211)] [18:43:48.473] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node con
+nection: A device attached to the system is not functioning. (0x1F)
+LoginTestwithExcel using admin@yourstore.com adm                      | PASS |
+------------------------------------------------------------------------------
+LoginTestwithExcel using adm@yourstore.com admin                      | PASS |
+------------------------------------------------------------------------------
+LoginTestwithExcel using adm@yourstore.com adm                        | PASS |
+------------------------------------------------------------------------------
+DDT2 Excel                                                            | PASS |
+3 critical tests, 3 passed, 0 failed
+3 tests total, 3 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+------------------------------------------------------------------------------------------
+LoginData.csv:
+
+${username};${password};
+admin@yourstore.com;adm;
+adm@yourstore.com;admin;
+adm123@yourstore.com;adm;
+
+
+DDT2_CSV.robot:
+
+*** Settings ***
+Library     SeleniumLibrary
+Resource    ../Resources/login_resouces.robot
+Library     DataDriver      ../TestData/LoginData.csv
+Suite Setup         Open my Browser
+Suite Teardown      Close my Browser
+Test Template       Invalid login
+
+
+*** Test Cases ***
+LoginTestwithCsv using ${username} ${password}
+
+
+*** Keywords ***
+Invalid login
+    [Arguments]     ${username}     ${password}
+    Input username  ${username}
+    Input pwd       ${password}
+    click login button
+    Error message should be visible
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\DDT2_Excel.robot
+==============================================================================
+DDT2 Excel
+==============================================================================
+
+DevTools listening on ws://127.0.0.1:64369/devtools/browser/4fde548c-0e8c-410b-821e-5a2ada68858f
+[20684:8016:0222/192900.352:ERROR:device_event_log_impl.cc(211)] [19:29:00.351] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conn
+ection: A device attached to the system is not functioning. (0x1F)
+[20684:8016:0222/192900.355:ERROR:device_event_log_impl.cc(211)] [19:29:00.355] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conn
+ection: A device attached to the system is not functioning. (0x1F)
+LoginTestwithExcel using admin@yourstore.com adm                      | PASS |
+------------------------------------------------------------------------------
+LoginTestwithExcel using adm@yourstore.com admin                      | PASS |
+------------------------------------------------------------------------------
+LoginTestwithExcel using adm@yourstore.com adm                        | PASS |
+------------------------------------------------------------------------------
+DDT2 Excel                                                            | PASS |
+3 critical tests, 3 passed, 0 failed
+3 tests total, 3 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+-------------------------------------------------------------------------------------------------------------------------------
+Part 20- Database Testing using Robot Framework | Selenium with Python:
+=========================================================================
+*** Settings ***
+Library     DatabaseLibrary
+Library     OperatingSystem
+
+Suite Setup  Connect to Database    pymysql     ${DBName}   ${DBUser}   ${DBPass}   ${DBHost}   ${DBPort}
+Suite Teardown  Disconnect From Database
+
+*** Variables ***
+${DBName}   claimdb
+${DBUser}   root
+${DBPass}   root
+${DBHost}   localhost
+${DBPort}   3306
+
+
+*** Test Cases ***
+Create person table
+    ${output}=  Execute SQL String      Create table person(id integer,first_name varchar(20),last_name varchar(20))   #-->to add single record in a table
+    log to console  ${output}
+    should be equal as strings  ${output}   None
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\DBTesting.robot
+==============================================================================
+DBTesting
+==============================================================================
+Create person table                                                   .None
+Create person table                                                   | PASS |
+------------------------------------------------------------------------------
+DBTesting                                                             | PASS |
+1 critical test, 1 passed, 0 failed
+1 test total, 1 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+----------------------------------------------------------------------------------------------------------
+mydb_person_insertData.sql:
+==============================
+INSERT INTO claimdb.person values(101,"John","Kennedy");
+INSERT INTO claimdb.person values(102,"David","Kennedy");
+INSERT INTO claimdb.person values(103,"Smith","Kennedy");
+INSERT INTO claimdb.person values(104,"Marry","Kennedy");
+INSERT INTO claimdb.person values(105,"Tyre","Kennedy");
+---------------------
+DBTesting.robot:
+=================
+
+*** Settings ***
+Library     DatabaseLibrary
+Library     OperatingSystem
+
+Suite Setup  Connect to Database    pymysql     ${DBName}   ${DBUser}   ${DBPass}   ${DBHost}   ${DBPort}
+Suite Teardown  Disconnect From Database
+
+*** Variables ***
+${DBName}   claimdb
+${DBUser}   root
+${DBPass}   root
+${DBHost}   localhost
+${DBPort}   3306
+
+
+*** Test Cases ***
+#Create person table
+#    ${output}=  Execute SQL String      Create table person(id integer,first_name varchar(20),last_name varchar(20))
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+Inserting Data in person table
+    #Single Record
+    #${output}=  Execute SQL String      Insert into person values(101,"John","Candy");
+
+    #multiple records
+    ${output}=  Execute SQL Script      ./TestData/mydb_person_insertData.sql
+    log to console  ${output}
+    should be equal as strings  ${output}   None
+
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\DBTesting.robot
+==============================================================================
+DBTesting
+==============================================================================
+Inserting Data in person table                                        .None
+Inserting Data in person table                                        | PASS |
+------------------------------------------------------------------------------
+DBTesting                                                             | PASS |
+1 critical test, 1 passed, 0 failed
+1 test total, 1 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+------------------------------------------------------------------------------------------------------------------------
+*** Settings ***
+Library     DatabaseLibrary
+Library     OperatingSystem
+
+Suite Setup  Connect to Database    pymysql     ${DBName}   ${DBUser}   ${DBPass}   ${DBHost}   ${DBPort}
+Suite Teardown  Disconnect From Database
+
+*** Variables ***
+${DBName}   claimdb
+${DBUser}   root
+${DBPass}   root
+${DBHost}   localhost
+${DBPort}   3306
+
+
+*** Test Cases ***
+#Create person table
+#    ${output}=  Execute SQL String      Create table person(id integer,first_name varchar(20),last_name varchar(20))
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+#Inserting Data in person table
+    #Single Record
+    #${output}=  Execute SQL String      Insert into person values(101,"John","Candy");
+
+    #multiple records
+#    ${output}=  Execute SQL Script      ./TestData/mydb_person_insertData.sql
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+Check David record present in Person Table
+    check if exists in database     select id from claimdb.person where first_name="John";
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\DBTesting.robot
+==============================================================================
+DBTesting
+==============================================================================
+Check David record present in Person Table                            | PASS |
+------------------------------------------------------------------------------
+DBTesting                                                             | PASS |
+1 critical test, 1 passed, 0 failed
+1 test total, 1 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+----------------------------------
+*** Settings ***
+Library     DatabaseLibrary
+Library     OperatingSystem
+
+Suite Setup  Connect to Database    pymysql     ${DBName}   ${DBUser}   ${DBPass}   ${DBHost}   ${DBPort}
+Suite Teardown  Disconnect From Database
+
+*** Variables ***
+${DBName}   claimdb
+${DBUser}   root
+${DBPass}   root
+${DBHost}   localhost
+${DBPort}   3306
+
+
+*** Test Cases ***
+#Create person table
+#    ${output}=  Execute SQL String      Create table person(id integer,first_name varchar(20),last_name varchar(20))
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+#Inserting Data in person table
+    #Single Record
+    #${output}=  Execute SQL String      Insert into person values(101,"John","Candy");
+
+    #multiple records
+#    ${output}=  Execute SQL Script      ./TestData/mydb_person_insertData.sql
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+Check David record present in Person Table
+    check if exists in database     select id from claimdb.person where first_name="Sita";
+
+*** Settings ***
+Library     DatabaseLibrary
+Library     OperatingSystem
+
+Suite Setup  Connect to Database    pymysql     ${DBName}   ${DBUser}   ${DBPass}   ${DBHost}   ${DBPort}
+Suite Teardown  Disconnect From Database
+
+*** Variables ***
+${DBName}   claimdb
+${DBUser}   root
+${DBPass}   root
+${DBHost}   localhost
+${DBPort}   3306
+
+
+*** Test Cases ***
+#Create person table
+#    ${output}=  Execute SQL String      Create table person(id integer,first_name varchar(20),last_name varchar(20))
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+#Inserting Data in person table
+    #Single Record
+    #${output}=  Execute SQL String      Insert into person values(101,"John","Candy");
+
+    #multiple records
+#    ${output}=  Execute SQL Script      ./TestData/mydb_person_insertData.sql
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+Check David record present in Person Table
+    check if exists in database     select id from claimdb.person where first_name="Sita";
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\DBTesting.robot
+==============================================================================
+DBTesting
+==============================================================================
+Check David record present in Person Table                            | FAIL |
+Expected to have have at least one row from 'select id from claimdb.person where first_name="Sita";' but got 0 rows.
+------------------------------------------------------------------------------
+DBTesting                                                             | FAIL |
+1 critical test, 0 passed, 1 failed
+1 test total, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+----------------------------------------------------
+*** Settings ***
+Library     DatabaseLibrary
+Library     OperatingSystem
+
+Suite Setup  Connect to Database    pymysql     ${DBName}   ${DBUser}   ${DBPass}   ${DBHost}   ${DBPort}
+Suite Teardown  Disconnect From Database
+
+*** Variables ***
+${DBName}   claimdb
+${DBUser}   root
+${DBPass}   root
+${DBHost}   localhost
+${DBPort}   3306
+
+
+*** Test Cases ***
+#Create person table
+#    ${output}=  Execute SQL String      Create table person(id integer,first_name varchar(20),last_name varchar(20))
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+#Inserting Data in person table
+    #Single Record
+    #${output}=  Execute SQL String      Insert into person values(101,"John","Candy");
+
+    #multiple records
+#    ${output}=  Execute SQL Script      ./TestData/mydb_person_insertData.sql
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+#Check David record present in Person Table
+#    check if exists in database     select id from claimdb.person where first_name="Sita";
+
+Check Jio record present in Person Table
+    check if not exists in database     select id from claimdb.person where first_name="Jio";
+
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\DBTesting.robot
+==============================================================================
+DBTesting
+==============================================================================
+Check Jio record present in Person Table                              | PASS |
+------------------------------------------------------------------------------
+DBTesting                                                             | PASS |
+1 critical test, 1 passed, 0 failed
+1 test total, 1 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+--------------------------------------------
+*** Settings ***
+Library     DatabaseLibrary
+Library     OperatingSystem
+
+Suite Setup  Connect to Database    pymysql     ${DBName}   ${DBUser}   ${DBPass}   ${DBHost}   ${DBPort}
+Suite Teardown  Disconnect From Database
+
+*** Variables ***
+${DBName}   claimdb
+${DBUser}   root
+${DBPass}   root
+${DBHost}   localhost
+${DBPort}   3306
+
+
+*** Test Cases ***
+#Create person table
+#    ${output}=  Execute SQL String      Create table person(id integer,first_name varchar(20),last_name varchar(20))
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+#Inserting Data in person table
+    #Single Record
+    #${output}=  Execute SQL String      Insert into person values(101,"John","Candy");
+
+    #multiple records
+#    ${output}=  Execute SQL Script      ./TestData/mydb_person_insertData.sql
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+#Check David record present in Person Table
+#    check if exists in database     select id from claimdb.person where first_name="Sita";
+
+#Check Jio record present in Person Table
+#    check if not exists in database     select id from claimdb.person where first_name="Jio";
+
+#Check Person Table exists in mydb database
+#    table must exist    person
+
+#Verify Row Count is Zero
+#    row count is 0  SELECT * FROM claimdb.person WHERE first_name="Jio";
+
+Verify Row Count is Equal to Some Value
+    row count is equal to x  SELECT * FROM claimdb.person WHERE first_name="David";     1
+
+Verify Row Count is Greater than Some Value
+    row count is greater than x  SELECT * FROM claimdb.person WHERE first_name="David";     0
+
+Verify Row Count is less than Some Value
+    row count is less than x  SELECT * FROM claimdb.person WHERE first_name="David";     5
+
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\DBTesting.robot
+==============================================================================
+DBTesting
+==============================================================================
+Verify Row Count is Equal to Some Value                               | PASS |
+------------------------------------------------------------------------------
+Verify Row Count is Greater than Some Value                           | PASS |
+------------------------------------------------------------------------------
+Verify Row Count is less than Some Value                              | PASS |
+------------------------------------------------------------------------------
+DBTesting                                                             | PASS |
+3 critical tests, 3 passed, 0 failed
+3 tests total, 3 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+------------------------
+*** Settings ***
+Library     DatabaseLibrary
+Library     OperatingSystem
+
+Suite Setup  Connect to Database    pymysql     ${DBName}   ${DBUser}   ${DBPass}   ${DBHost}   ${DBPort}
+Suite Teardown  Disconnect From Database
+
+*** Variables ***
+${DBName}   claimdb
+${DBUser}   root
+${DBPass}   root
+${DBHost}   localhost
+${DBPort}   3306
+
+
+*** Test Cases ***
+#Create person table
+#    ${output}=  Execute SQL String      Create table person(id integer,first_name varchar(20),last_name varchar(20))
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+#Inserting Data in person table
+    #Single Record
+    #${output}=  Execute SQL String      Insert into person values(101,"John","Candy");
+
+    #multiple records
+#    ${output}=  Execute SQL Script      ./TestData/mydb_person_insertData.sql
+#    log to console  ${output}
+#    should be equal as strings  ${output}   None
+
+#Check David record present in Person Table
+#    check if exists in database     select id from claimdb.person where first_name="Sita";
+
+#Check Jio record present in Person Table
+#    check if not exists in database     select id from claimdb.person where first_name="Jio";
+
+#Check Person Table exists in mydb database
+#    table must exist    person
+
+#Verify Row Count is Zero
+#    row count is 0  SELECT * FROM claimdb.person WHERE first_name="Jio";
+
+#Verify Row Count is Equal to Some Value
+#    row count is equal to x  SELECT * FROM claimdb.person WHERE first_name="David";     1
+
+#Verify Row Count is Greater than Some Value
+#    row count is greater than x  SELECT * FROM claimdb.person WHERE first_name="David";     0
+
+#Verify Row Count is less than Some Value
+#    row count is less than x  SELECT * FROM claimdb.person WHERE first_name="David";     5
+
+Update record in person table
+    ${output}=  Execute SQL String  update claimdb.person set first_name="Dhoni" where id=104;
+
+Retrieve Records from Person Table
+    @{queryResults}=    query       Select * from claimdb.person;
+    log to console  many @{queryResults}
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\DBTesting.robot
+==============================================================================
+DBTesting
+==============================================================================
+Update record in person table                                         | PASS |
+------------------------------------------------------------------------------
+Retrieve Records from Person Table                                    .many [(101, 'John', 'Kennedy'), (102, 'David', 'Kennedy'), (103, 'Smith', 'Kennedy')
+, (104, 'Dhoni', 'Kennedy'), (105, 'Tyre', 'Kennedy')]
+Retrieve Records from Person Table                                    | PASS |
+------------------------------------------------------------------------------
+DBTesting                                                             | PASS |
+2 critical tests, 2 passed, 0 failed
+2 tests total, 2 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+-------------------------------------------------------------------------------------------------------------------------------
+Part 21- Setup & TearDown in Robot FrameworkRobot | Selenium with Python :
+=========================================================================
+TestExample.robot:
+===================
+*** Settings ***
+Suite Setup  log to console     Opening Browser
+Suite Teardown  log to console  Closing Browser
+
+Test Setup  log to console      Login to application
+Test Teardown  log to console   Logout from application
+
+*** Test Cases ***
+TC1 Prepaid Recharge
+    log to console  This is prepaid recharge testcase
+TC1 Postpaid Recharge
+    log to console  This is postpaid recharge testcase
+TC1 Search
+    log to console  This is search testcase
+TC1 Advanced Recharge
+    log to console  This is advanved search testcase
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\TestExmaple.robot
+==============================================================================
+TestExmaple
+==============================================================================
+Opening Browser
+TC1 Prepaid Recharge                                                  Login to application
+.This is prepaid recharge testcase
+.Logout from application
+TC1 Prepaid Recharge                                                  | PASS |
+------------------------------------------------------------------------------
+TC1 Postpaid Recharge                                                 Login to application
+.This is postpaid recharge testcase
+.Logout from application
+TC1 Postpaid Recharge                                                 | PASS |
+------------------------------------------------------------------------------
+TC1 Search                                                            Login to application
+.This is search testcase
+.Logout from application
+TC1 Search                                                            | PASS |
+------------------------------------------------------------------------------
+TC1 Advanced Recharge                                                 Login to application
+.This is advanved search testcase
+.Logout from application
+TC1 Advanced Recharge                                                 | PASS |
+------------------------------------------------------------------------------
+Closing Browser
+TestExmaple                                                           | PASS |
+4 critical tests, 4 passed, 0 failed
+4 tests total, 4 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+--------------------------------------------------------------------------------------
+Part 22- Tags | Grouping Tests in Robot FrameworkRobot | Selenium with Python :
+=============================================================================
+Tagging.robot:
+==============
+*** Settings ***
+
+
+*** Test Cases ***
+TC1 User RegisterationTest
+    log to console  This is user reg test
+    log to console  user registeration test is over
+
+TC2 LoginTest
+    log to console  This is login test
+    log to console  login test is over
+
+TC3 Change user settings
+    log to console  This is changing user settings test
+    log to console  Change user settings test is over
+
+TC14 Logout Test
+    log to console  This is Logout test
+    log to console  Logout test is over
+
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\Tagging.robot
+==============================================================================
+Tagging
+==============================================================================
+TC1 User RegisterationTest                                            This is user reg test
+.user registeration test is over
+TC1 User RegisterationTest                                            | PASS |
+------------------------------------------------------------------------------
+TC2 LoginTest                                                         This is login test
+.login test is over
+TC2 LoginTest                                                         | PASS |
+------------------------------------------------------------------------------
+TC3 Change user settings                                              This is changing user settings test
+.Change user settings test is over
+TC3 Change user settings                                              | PASS |
+------------------------------------------------------------------------------
+TC14 Logout Test                                                      This is Logout test
+.Logout test is over
+TC14 Logout Test                                                      | PASS |
+------------------------------------------------------------------------------
+Tagging                                                               | PASS |
+4 critical tests, 4 passed, 0 failed
+4 tests total, 4 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+----------------------------
+*** Settings ***
+
+
+*** Test Cases ***
+TC1 User RegisterationTest
+    [Tags]  regression
+    log to console  This is user reg test
+    log to console  user registeration test is over
+
+TC2 LoginTest
+    [Tags]  sanity
+    log to console  This is login test
+    log to console  login test is over
+
+TC3 Change user settings
+    [Tags]  regression
+    log to console  This is changing user settings test
+    log to console  Change user settings test is over
+
+TC14 Logout Test
+    [Tags]  sanity
+    log to console  This is Logout test
+    log to console  Logout test is over
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot --include=sanity TestCases\Tagging.robot #-->it includes and executes sanity test only
+==============================================================================
+Tagging
+==============================================================================
+TC2 LoginTest                                                         This is login test
+.login test is over
+TC2 LoginTest                                                         | PASS |
+------------------------------------------------------------------------------
+TC14 Logout Test                                                      This is Logout test
+.Logout test is over
+TC14 Logout Test                                                      | PASS |
+------------------------------------------------------------------------------
+Tagging                                                               | PASS |
+2 critical tests, 2 passed, 0 failed
+2 tests total, 2 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+-----------------------------------
+*** Settings ***
+
+
+*** Test Cases ***
+TC1 User RegisterationTest
+    [Tags]  regression
+    log to console  This is user reg test
+    log to console  user registeration test is over
+
+TC2 LoginTest
+    [Tags]  sanity
+    log to console  This is login test
+    log to console  login test is over
+
+TC3 Change user settings
+    [Tags]  regression
+    log to console  This is changing user settings test
+    log to console  Change user settings test is over
+
+TC14 Logout Test
+    [Tags]  sanity
+    log to console  This is Logout test
+    log to console  Logout test is over
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot --include=regression TestCases\Tagging.robot #-->it includes and executes regression test only
+==============================================================================
+Tagging
+==============================================================================
+TC1 User RegisterationTest                                            This is user reg test
+.user registeration test is over
+TC1 User RegisterationTest                                            | PASS |
+------------------------------------------------------------------------------
+TC3 Change user settings                                              This is changing user settings test
+.Change user settings test is over
+TC3 Change user settings                                              | PASS |
+------------------------------------------------------------------------------
+Tagging                                                               | PASS |
+2 critical tests, 2 passed, 0 failed
+2 tests total, 2 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+------------------
+*** Settings ***
+
+
+*** Test Cases ***
+TC1 User RegisterationTest
+    [Tags]  regression
+    log to console  This is user reg test
+    log to console  user registeration test is over
+
+TC2 LoginTest
+    [Tags]  sanity
+    log to console  This is login test
+    log to console  login test is over
+
+TC3 Change user settings
+    [Tags]  regression
+    log to console  This is changing user settings test
+    log to console  Change user settings test is over
+
+TC14 Logout Test
+    [Tags]  sanity
+    log to console  This is Logout test
+    log to console  Logout test is over
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot -i sanity -i regression TestCases\Tagging.robot #-->executes both groups (sanity and regression)test cases
+==============================================================================
+Tagging
+==============================================================================
+TC1 User RegisterationTest                                            This is user reg test
+.user registeration test is over
+TC1 User RegisterationTest                                            | PASS |
+------------------------------------------------------------------------------
+TC2 LoginTest                                                         This is login test
+.login test is over
+TC2 LoginTest                                                         | PASS |
+------------------------------------------------------------------------------
+TC3 Change user settings                                              This is changing user settings test
+.Change user settings test is over
+TC3 Change user settings                                              | PASS |
+------------------------------------------------------------------------------
+TC14 Logout Test                                                      This is Logout test
+.Logout test is over
+TC14 Logout Test                                                      | PASS |
+------------------------------------------------------------------------------
+Tagging                                                               | PASS |
+4 critical tests, 4 passed, 0 failed
+4 tests total, 4 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+-------------------------
+*** Settings ***
+
+
+*** Test Cases ***
+TC1 User RegisterationTest
+    [Tags]  regression
+    log to console  This is user reg test
+    log to console  user registeration test is over
+
+TC2 LoginTest
+    [Tags]  sanity
+    log to console  This is login test
+    log to console  login test is over
+
+TC3 Change user settings
+    [Tags]  regression
+    log to console  This is changing user settings test
+    log to console  Change user settings test is over
+
+TC14 Logout Test
+    [Tags]  sanity
+    log to console  This is Logout test
+    log to console  Logout test is over
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot -e sanity -i regression TestCases\Tagging.robot
+==============================================================================
+Tagging
+==============================================================================
+TC1 User RegisterationTest                                            This is user reg test
+.user registeration test is over
+TC1 User RegisterationTest                                            | PASS |
+------------------------------------------------------------------------------
+TC3 Change user settings                                              This is changing user settings test
+.Change user settings test is over
+TC3 Change user settings                                              | PASS |
+------------------------------------------------------------------------------
+Tagging                                                               | PASS |
+2 critical tests, 2 passed, 0 failed
+2 tests total, 2 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+-------------------------------------------------------------------------------------------------------------------
+Part 23- Page Object Model (POM) Pattern in Robot Framework | Selenium with Python :
+=====================================================================================
+locators.py:
+==============
+#Login Page Elements
+txt_loginUserName="name:userName"
+txt_loginPassword="name:password"
+btn_signIn="xpath://input[@name='submit']"
+--------
+LoginKeywords.robot:
+====================
+*** Settings ***
+Library  SeleniumLibrary
+Variables  ../PageObjects/locators.py
+
+*** Keywords ***
+Open my Browser
+    [Arguments]  ${SiteUrl}     ${Browser}
+    open browser    ${SiteUrl}  ${Browser}
+    Maximize Browser Window
+
+Enter Username
+    [Arguments]  ${username}
+    Input Text  ${txt_loginUserName}    ${username}
+
+Enter Password
+    [Arguments]  ${password}
+    Input Text  ${txt_loginPassword}    ${password}
+
+Click SignIn
+    click button    ${btn_signIn}
+
+Verify Successfull Login
+    title should be     Login: Mercury Tours
+
+close my browsers
+    close all browsers
+------
+LoginTest.robot:
+=================
+*** Settings ***
+Library  SeleniumLibrary
+Resource    ../Resources/LoginKeywords.robot
+
+*** Variables ***
+${Browser}      chrome
+${SiteUrl}      http://demo.guru99.com/test/newtours/index.php
+${user}         tutorial
+${pwd}          tutorial
+
+*** Test Cases ***
+LoginTest
+    Open my Browser     ${SiteUrl}  ${Browser}
+    Enter UserName      ${user}
+    Enter Password      ${pwd}
+    Click SignIn
+    sleep   3 seconds
+    Verify Successfull Login
+    close my browsers
+
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\LoginTest.robot
+==============================================================================
+LoginTest
+==============================================================================
+LoginTest
+DevTools listening on ws://127.0.0.1:55287/devtools/browser/5d59ad60-5cbb-4904-ba7a-25b726a2532d
+[424:3884:0224/132702.725:ERROR:device_event_log_impl.cc(211)] [13:27:02.725] USB: usb_device_handle_win.
+cc:1049 Failed to read descriptor from node connection: A device attached to the system is not functionin
+g. (0x1F)
+[424:3884:0224/132702.731:ERROR:device_event_log_impl.cc(211)] [13:27:02.731] USB: usb_device_handle_win.
+cc:1049 Failed to read descriptor from node connection: A device attached to the system is not functionin
+g. (0x1F)
+LoginTest                                                             | PASS |
+------------------------------------------------------------------------------
+locators.py:
+============
+#Login Page Elements
+txt_loginUserName="name:userName"
+txt_loginPassword="name:password"
+btn_signIn="xpath://input[@name='submit']"
+
+#Registeration Page Elements
+link_Reg="link:REGISTER"
+txt_firstName="name:firstName"
+txt_lastName="name:lastName"
+txt_phone="name:phone"
+txt_email="name:userName"
+txt_add1="name:address1"
+txt_city="name:city"
+txt_state="name:state"
+txt_postCode="name:postalCode"
+drp_country="name:country"
+txt_userName="name:email"
+txt_Password="name:password"
+txt_confirmedPassword="name:confirmPassword"
+btn_submit="xpath://input[@name='submit']"
+------
+RegisterationKeywords.robot:
+=============================
+*** Settings ***
+Library  SeleniumLibrary
+Variables  ../PageObjects/locators.py
+
+*** Keywords ***
+Open my Browser
+    [Arguments]  ${SiteUrl}     ${Browser}
+    open browser    ${SiteUrl}  ${Browser}
+    Maximize Browser Window
+
+Click Register Link
+    click link      ${link_Reg}
+
+Enter FirstName
+    [Arguments]     ${firstName}
+    Input Text      ${txt_firstName}    ${firstName}
+
+Enter LastName
+    [Arguments]     ${lastName}
+    Input Text      ${txt_lastName}    ${lastName}
+
+Enter Phone
+    [Arguments]     ${phone}
+    Input Text      ${txt_phone}    ${txt_phone}
+
+Enter Email
+    [Arguments]     ${email}
+    Input Text      ${txt_email}    ${email}
+
+Enter Address
+    [Arguments]     ${add}
+    Input Text      ${txt_add1}    ${add}
+
+Enter City
+    [Arguments]     ${city}
+    Input Text      ${txt_city}     ${city}
+
+Enter State
+    [Arguments]     ${state}
+    Input Text      ${txt_state}    ${state}
+
+Enter Postal Code
+    [Arguments]     ${postalcode}
+    Input Text      ${txt_postCode}    ${postalcode}
+
+Select Country
+    [Arguments]     ${country}
+    select from list by label   ${drp_country}      ${country}
+
+Enter User Name
+    [Arguments]     ${userName}
+    Input Text      ${txt_userName}    ${userName}
+
+Enter Password
+    [Arguments]     ${password}
+    Input Text      ${txt_Password}    ${password}
+
+Enter Confirmed Password
+    [Arguments]     ${confpassword}
+    Input Text      ${txt_confirmedPassword}    ${confpassword}
+
+Click Submit
+    click button    ${btn_submit}
+
+Verify Successfull Registeration
+    page should contain     Thank you for registering
+
+close my browsers
+    close all browsers
+
+----------
+*** Settings ***
+Library  SeleniumLibrary
+Resource    ../Resources/RegisterationKeywords.robot
+
+*** Variables ***
+${Browser}      chrome
+${SiteUrl}      http://demo.guru99.com/test/newtours/index.php
+
+*** Test Cases ***
+RegisterationTest
+    Open my Browser     ${SiteUrl}  ${Browser}
+    Click Register Link
+    Enter FirstName     David
+    Enter LastName      John
+    Enter Phone         1234567890
+    Enter Email         davidJohn@gmail.com
+    Enter Address       Toronto
+    Enter City          Toronto
+    Enter State         Brampton
+    Enter Postal Code   LS3 1E7
+    Select Country      CANADA
+    Enter User Name     johnxyz
+    Enter Password      johnxyz
+    Enter Confirmed Password    johnxyz
+    Click Submit
+    sleep   3 seconds
+    Verify Successfull Registeration
+    close my browsers
+-------
+(venv) C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject>robot TestCases\RegisterationTest.robot
+==============================================================================
+RegisterationTest
+==============================================================================
+RegisterationTest
+DevTools listening on ws://127.0.0.1:55824/devtools/browser/cb8dac38-72a1-4004-871e-003910a3690d
+[8844:12040:0224/164122.497:ERROR:device_event_log_impl.cc(211)] [16:41:22.497] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conn
+ection: A device attached to the system is not functioning. (0x1F)
+[8844:12040:0224/164122.500:ERROR:device_event_log_impl.cc(211)] [16:41:22.499] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node conn
+ection: A device attached to the system is not functioning. (0x1F)
+RegisterationTest                                                     | PASS |
+------------------------------------------------------------------------------
+RegisterationTest                                                     | PASS |
+1 critical test, 1 passed, 0 failed
+1 test total, 1 passed, 0 failed
+==============================================================================
+Output:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\output.xml
+Log:     C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\log.html
+Report:  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject\report.html
+
+----------------------------------------------------------------------------------------------------------------------------------
+Part 24- Parallel Test Execution in Robot Framework | Selenium with Python :
+===========================================================================
+how to run test suites ;how to run tests parallely using robotframework-pabot;
+how to save results in results folder;how to run tests using single windows bat file
+
+how to run test suites:
+==========================
+robot TestCases\ -->it will run all the programs inside TestCases folder
+robot TestCases\Reg*.robot -->regular expression
+robot TestCases\*.robot
+
+how to run tests parallely using robotframework-pabot:
+=======================================================
+pre requisties:Install below package in cmd & PyCharm
+CLI: pip install -U robotframework-pabot
+pabot --processes 2 TestCases\*.robot
+
+how to save results in results folder
+======================================
+pabot --processes 2 --outputdir Results TestCases\*.robot -->here in this command new folder called "Results" will be created and test files will be saved along with report.html
+
+Create a file in project "run.bat" and add these below lines in bat file
+cd  C:\Users\amuthaiya\PycharmProjects\pythonAutomationProject
+pabot --processes 2 --outputdir Results TestCases\Reg*.robot TestCases\LoginTest.robot --> after inserting these two lines just right click run.bat file which is inside "pythonAutomationproject " and select "run as cmd script"
+-->this will create a "Results" folder with RegisterationTest.robot and LoginTest.robot and thus  report.html will be created
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
